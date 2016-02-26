@@ -7,7 +7,7 @@
     /// <summary>
     /// Internal miscellaneous utility functions.
     /// </summary>
-    internal static class Util<U>
+    internal static class Util<TU>
     {
         /// <summary>
         /// The default key MongoRepository will look for in the App.config or Web.config file.
@@ -42,9 +42,9 @@
         /// <param name="connectionString">The connectionstring to use to get the collection from.</param>
         /// <returns>Returns an IMongoCollection from the specified type and connectionstring.</returns>
         public static IMongoCollection<T> GetCollectionFromConnectionString<T>(string connectionString)
-            where T : IEntity<U>
+            where T : IEntity<TU>
         {
-            return Util<U>.GetCollectionFromConnectionString<T>(connectionString, GetCollectionName<T>());
+            return Util<TU>.GetCollectionFromConnectionString<T>(connectionString, GetCollectionName<T>());
         }
 
         /// <summary>
@@ -55,9 +55,9 @@
         /// <param name="collectionName">The name of the collection to use.</param>
         /// <returns>Returns a MongoCollection from the specified type and connectionstring.</returns>
         public static IMongoCollection<T> GetCollectionFromConnectionString<T>(string connectionString, string collectionName)
-            where T : IEntity<U>
+            where T : IEntity<TU>
         {
-            return Util<U>.GetDatabaseFromUrl(new MongoUrl(connectionString))
+            return Util<TU>.GetDatabaseFromUrl(new MongoUrl(connectionString))
                 .GetCollection<T>(collectionName);
         }
 
@@ -68,9 +68,9 @@
         /// <param name="url">The url to use to get the collection from.</param>
         /// <returns>Returns an IMongoCollection from the specified type and url.</returns>
         public static IMongoCollection<T> GetCollectionFromUrl<T>(MongoUrl url)
-            where T : IEntity<U>
+            where T : IEntity<TU>
         {
-            return Util<U>.GetCollectionFromUrl<T>(url, GetCollectionName<T>());
+            return Util<TU>.GetCollectionFromUrl<T>(url, GetCollectionName<T>());
         }
 
         /// <summary>
@@ -81,9 +81,9 @@
         /// <param name="collectionName">The name of the collection to use.</param>
         /// <returns>Returns an IMongoCollection from the specified type and url.</returns>
         public static IMongoCollection<T> GetCollectionFromUrl<T>(MongoUrl url, string collectionName)
-            where T : IEntity<U>
+            where T : IEntity<TU>
         {
-            return Util<U>.GetDatabaseFromUrl(url)
+            return Util<TU>.GetDatabaseFromUrl(url)
                 .GetCollection<T>(collectionName);
         }
 
@@ -92,7 +92,7 @@
         /// </summary>
         /// <typeparam name="T">The type to determine the collectionname for.</typeparam>
         /// <returns>Returns the collectionname for T.</returns>
-        private static string GetCollectionName<T>() where T : IEntity<U>
+        private static string GetCollectionName<T>() where T : IEntity<TU>
         {
             string collectionName;
             if (typeof(T).BaseType.Equals(typeof(object)))

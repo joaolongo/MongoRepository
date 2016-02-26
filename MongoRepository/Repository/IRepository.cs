@@ -1,4 +1,6 @@
-﻿namespace MongoRepository
+﻿using System.Threading.Tasks;
+
+namespace MongoRepository
 {
     using MongoDB.Driver;
     using System;
@@ -51,6 +53,55 @@
         /// <param name="entity">The entity.</param>
         /// <returns>The updated entity.</returns>
         T Update(T entity);
+
+        /// <summary>
+        /// Adds the new entity in the repository asynchronously.
+        /// </summary>
+        /// <param name="entity">The entity to add.</param>
+        /// <returns>The added entity including its new ObjectId.</returns>
+        Task<T> AddAsync(T entity);
+
+        /// <summary>
+        /// Adds the new entities in the repository asynchronously.
+        /// <param name="entities">The entities to add.</param>
+        /// </summary>
+        Task AddAsync(IEnumerable<T> entities);
+
+        /// <summary>
+        /// Upserts an entity asynchronously.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>The updated entity.</returns>
+        Task<T> UpdateAsync(T entity);
+
+        /// <summary>
+        /// Upserts the entities asynchronously.
+        /// </summary>
+        /// <param name="entities">The entities to update.</param>
+        Task UpdateAsync(IEnumerable<T> entities);
+
+        /// <summary>
+        /// Deletes an entity from the repository by its ObjectId asynchronously.
+        /// </summary>
+        /// <param name="id">The ObjectId of the entity.</param>
+        void DeleteAsync(TKey id);
+
+        /// <summary>
+        /// Deletes the given entity asynchronously.
+        /// </summary>
+        /// <param name="entity">The entity to delete.</param>
+        Task DeleteAsync(T entity);
+
+        /// <summary>
+        /// Deletes the entities matching the predicate asynchronously.
+        /// </summary>
+        /// <param name="predicate">The expression.</param>
+        Task DeleteAsync(Expression<Func<T, bool>> predicate);
+
+        /// <summary>
+        /// Deletes all entities in the repository asynchronously.
+        /// </summary>
+        void DeleteAllAsync();
 
         /// <summary>
         /// Upserts the entities.
