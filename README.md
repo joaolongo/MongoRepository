@@ -1,4 +1,4 @@
-Project migrated to GitLab![Click here to access new location](https://gitlab.com/joaolongodemiranda/MongoRepository)
+# Project migrated to [GitLab Repo](https://gitlab.com/joaolongodemiranda/MongoRepository)
 
 # ![Logo](https://raw.githubusercontent.com/RobThree/MongoRepository/master/mongorepositorylogo.png) Project Description
 
